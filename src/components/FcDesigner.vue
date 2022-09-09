@@ -201,6 +201,7 @@
                                             :option="baseForm.options"
                                             @change="baseChange"></component>
                                 <ElDivider>属性配置</ElDivider>
+                                
                                 <component :is="FormCreate" v-model="propsForm.api" :rule="propsForm.rule" :option="propsForm.options"
                                             @change="propChange" @removeField="propRemoveField"></component>
                                 <ElDivider v-if="showBaseRule">验证规则</ElDivider>
@@ -366,6 +367,7 @@ export default {
     },
     methods: {
         addMenu(config) {
+            
             if (!config.name || !config.list) return;
             let flag = true;
             this.menuList.forEach((v, i) => {
@@ -480,7 +482,13 @@ export default {
             };
         },
         clearDragRule() {
-            this.setRule([]);
+            this.$confirm('此操作将清空所有配置, 是否继续?', '警告', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.setRule([]);
+            }); 
         },
         makeDragRule(children) {
             return [this.makeDrag(true, 'draggable', children, {
@@ -496,6 +504,8 @@ export default {
             })];
         },
         previewFc() {
+
+            console.log("cfg",this)
             this.preview.state = true;
             this.preview.rule = this.getRule();
             this.preview.option = this.getOption();

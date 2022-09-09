@@ -7,6 +7,21 @@ export function makeRequiredRule() {
     };
 }
 
+
+export function displayClient() {
+    return     {
+        type: 'checkbox',
+        field: 'formCreate_client',
+        title: '用户端展示',       
+        options: [
+            {value: '1', label: '移动端'},
+            {value: '2', label: 'PC后台'},
+        ]
+    };
+
+
+}
+
 export function makeOptionsRule(to, flag) {
     const options = [
         {'label': 'JSON数据', 'value': 0},

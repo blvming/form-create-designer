@@ -1,5 +1,5 @@
 import uniqueId from '@form-create/utils/lib/unique';
-import {makeRequiredRule} from '../../utils';
+import {makeRequiredRule,displayClient} from '../../utils';
 
 const label = '输入框';
 const name = 'input';
@@ -18,7 +18,7 @@ export default {
         };
     },
     props() {
-        return [makeRequiredRule(), {
+        return [makeRequiredRule(),displayClient(), {
             type: 'select',
             field: 'type',
             title: '类型',
